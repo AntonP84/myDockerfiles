@@ -26,9 +26,8 @@ RUN chmod +x setup-python.sh && \
 
 COPY requirements.txt .
 RUN pip install -qU -r requirements.txt && \
-	pip install -qU tensorflow==1.14.0 && \
-	pip install -qU https://download.pytorch.org/whl/cpu/torch-1.1.0-cp37-cp37m-linux_x86_64.whl && \
-	pip install -qU https://download.pytorch.org/whl/cpu/torchvision-0.3.0-cp37-cp37m-linux_x86_64.whl && \
+	pip install -qU tensorflow==2.0.0 && \
+	pip install -qU torch==1.2.0+cpu torchvision==0.4.0+cpu -f https://download.pytorch.org/whl/torch_stable.html && \
 	python -m nltk.downloader punkt
 
 COPY kaggle.json ${HOME}/.kaggle/

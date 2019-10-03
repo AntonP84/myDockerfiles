@@ -26,20 +26,24 @@ docker image build \
 # GPU
 docker container run -d --rm \
     -e JUPYTER_TOKEN=py37 \
-    -p 8888:8888 -p 6006:6006 -p 8080:8080 \
-    -v $(realpath ~):/mnt/data -v $(realpath ~):/notebooks -v /mnt/sda:/hdd \
+    -p 8888:8888 \
+    --mount type=bind,source=$(realpath ~),target=/mnt/data \
+    --mount type=bind,source=/mnt/sda,target=/hdd \
+    --mount type=bind,source=$(realpath ~),target=/notebooks \
     --runtime=nvidia \
     --name pyml-gpu \
     pyml-gpu
 
 # to check GPUs
-docker exec pyml-gpu python -c "import tensorflow as tf; tf.enable_eager_execution(config=tf.ConfigProto(log_device_placement=True)); print(tf.reduce_mean(tf.random_normal([10000, 10000])))"
+docker exec pyml-gpu python -c "import tensorflow as tf; print(tf.config.experimental.list_physical_devices('GPU'));"
 
 # CPU
 docker container run -d --rm \
     -e JUPYTER_TOKEN=py37 \
     -p 8888:8888 \
-    -v $(realpath ~):/mnt/data -v $(realpath ~):/notebooks -v /mnt/sda:/hdd \
+    --mount type=bind,source=$(realpath ~),target=/mnt/data \
+    --mount type=bind,source=/mnt/sda,target=/hdd \
+    --mount type=bind,source=$(realpath ~),target=/notebooks \
     --name pyml \
     pyml
 ```

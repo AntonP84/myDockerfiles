@@ -12,7 +12,6 @@ jupyter nbextension enable collapsible_headings/main
 jupyter nbextension enable code_prettify/code_prettify
 jupyter nbextension enable hide_input_all/main
 jupyter nbextension enable python-markdown/main
-jupyter nbextension enable notify/notify
 jupyter nbextension enable freeze/main
 jupyter nbextension enable scratchpad/main
 jupyter nbextension enable snippets/main
