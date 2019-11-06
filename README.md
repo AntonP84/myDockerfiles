@@ -25,21 +25,21 @@ docker image build \
 ```bash
 # GPU
 docker container run -d --rm \
-    -e JUPYTER_TOKEN=py37 \
+    -e JUPYTER_TOKEN=my_token \
     -p 8888:8888 \
     --mount type=bind,source=$(realpath ~),target=/mnt/data \
     --mount type=bind,source=/mnt/sda,target=/hdd \
     --mount type=bind,source=$(realpath ~),target=/notebooks \
-    --runtime=nvidia \
+    --gpus all \
     --name pyml-gpu \
     pyml-gpu
 
 # to check GPUs
-docker exec pyml-gpu python -c "import tensorflow as tf; print(tf.config.experimental.list_physical_devices('GPU'));"
+docker container run --rm --gpus all pyml-gpu python -c "import tensorflow as tf; print(tf.config.experimental.list_physical_devices('GPU'));"
 
 # CPU
 docker container run -d --rm \
-    -e JUPYTER_TOKEN=py37 \
+    -e JUPYTER_TOKEN=my_token \
     -p 8888:8888 \
     --mount type=bind,source=$(realpath ~),target=/mnt/data \
     --mount type=bind,source=/mnt/sda,target=/hdd \
