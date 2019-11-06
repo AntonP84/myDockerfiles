@@ -35,7 +35,9 @@ docker container run -d --rm \
     pyml-gpu
 
 # to check GPUs
-docker container run --rm --gpus all pyml-gpu python -c "import tensorflow as tf; print(tf.config.experimental.list_physical_devices('GPU'));"
+docker container run --rm --gpus all pyml-gpu python -c "import tensorflow as tf; print(tf.test.is_gpu_available(cuda_only=True));"
+
+docker container run --rm --gpus all pyml-gpu python -c "import torch; print(torch.cuda.is_available());"
 
 # CPU
 docker container run -d --rm \
