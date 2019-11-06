@@ -36,7 +36,6 @@ RUN chmod 600 ${HOME}/.kaggle/kaggle.json && \
 	
 # enable Jupyter extensions
 ENV JUPYTER_TOKEN=py37
-COPY snippets.json ${HOME}/.local/share/jupyter/nbextensions/snippets/
 COPY setup-nbextensions.sh .
 RUN chmod +x setup-nbextensions.sh && \
 	./setup-nbextensions.sh
