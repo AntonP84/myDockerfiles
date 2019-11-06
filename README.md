@@ -52,4 +52,3 @@ docker container run -d --rm \
 
 - errors during image building
 - merge two dockerfiles
-- use pyTorch for the latest CUDA
