@@ -19,8 +19,8 @@ build-gpu:
 		.
 
 test-gpu:
-	echo Test TensorFlow 
-	docker container run --rm --gpus all pyml-gpu:${TAG} python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'));"
-	echo
-	echo Test PyTorch
-	docker container run --rm --gpus all pyml-gpu:${TAG} python -c "import torch; print(torch.cuda.is_available());"
+	@echo Test TensorFlow 
+	@docker container run --rm --gpus all pyml-gpu:${TAG} python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'));"
+	@echo
+	@echo Test PyTorch
+	@docker container run --rm --gpus all pyml-gpu:${TAG} python -c "import torch; print(torch.cuda.is_available());"
