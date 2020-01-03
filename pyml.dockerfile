@@ -1,5 +1,7 @@
-FROM ubuntu:18.04
+ARG IMAGE
+FROM ${IMAGE}
 
+ARG USE_GPU=false
 ARG NB_USER=user
 ARG NB_UID=1234
 ARG NB_GID=123
@@ -17,7 +19,7 @@ COPY setup-environment.sh .
 RUN chmod +x setup-environment.sh && \
 	./setup-environment.sh
 
-ENV PYTHON_VERSION=3.7.3 \
+ENV PYTHON_VERSION=3.7.6 \
 	PYTHONDONTWRITEBYTECODE=True \
 	PYTHONIOENCODING=utf-8
 COPY setup-python.sh .
@@ -25,10 +27,17 @@ RUN chmod +x setup-python.sh && \
 	./setup-python.sh
 
 COPY requirements.txt .
-RUN pip install -qU -r requirements.txt && \
-	pip install -qU tensorflow==2.0.0 && \
-	pip install torch==1.3.0+cpu torchvision==0.4.1+cpu -f https://download.pytorch.org/whl/torch_stable.html && \
+RUN pip install --no-cache-dir -qU -r requirements.txt && \
 	python -m nltk.downloader punkt
+
+RUN if ${USE_GPU}; then \
+		pip install --no-cache-dir -qU tensorflow-gpu==2.1.0-rc2 && \
+		pip install --no-cache-dir -qU torch==1.3.1 torchvision==0.4.2; \
+	else \
+		pip install --no-cache-dir -qU tensorflow-cpu==2.1.0-rc2 && \
+		pip install --no-cache-dir -qU torch==1.3.1+cpu torchvision==0.4.2+cpu -f https://download.pytorch.org/whl/torch_stable.html; \
+	fi
+	
 
 COPY kaggle.json ${HOME}/.kaggle/
 RUN chmod 600 ${HOME}/.kaggle/kaggle.json && \
