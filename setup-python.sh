@@ -32,4 +32,4 @@ ln -s python3 python
 ln -s pip3 pip
 ln -s python3-config python-config
 
-pip install -qU pip
+pip install --no-cache-dir -qU pip

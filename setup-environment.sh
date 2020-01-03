@@ -11,6 +11,7 @@ dpkg-reconfigure --frontend noninteractive tzdata
 apt install -y apt-utils cmake unzip zip nano wget curl git net-tools htop iputils-ping
 apt install -y graphviz
 
+# clean up
 rm -rf /var/lib/apt/lists/*
 
 # add local non-root user
