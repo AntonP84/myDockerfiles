@@ -9,7 +9,6 @@ build-cpu:
 	docker image build ${BUILD_ARGS} \
 		--build-arg IMAGE=ubuntu:18.04 \
 		-t pyml:${TAG} \
-		-f pyml.dockerfile \
 		.
 
 build-gpu:
@@ -17,7 +16,6 @@ build-gpu:
 		--build-arg USE_GPU=true \
 		--build-arg IMAGE=nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04 \
 		-t pyml-gpu:${TAG} \
-		-f pyml.dockerfile \
 		.
 
 test-gpu:
