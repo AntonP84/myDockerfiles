@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pip install -qU jupyter_contrib_nbextensions yapf
+pip install --no-cache-dir -qU jupyter_contrib_nbextensions yapf
 
 jupyter contrib nbextension install --system --InstallContribNbextensionsApp.log_level=WARN
 jupyter nbextensions_configurator enable --system

@@ -1,4 +1,4 @@
-TAG=20.01
+TAG=20.04
 
 define BUILD_ARGS
 	--build-arg NB_UID=$$(id -u $$whoami) \
