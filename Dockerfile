@@ -26,11 +26,11 @@ RUN pip install --no-cache-dir -qU -r requirements.txt && \
 	python -m nltk.downloader punkt
 
 RUN if ${USE_GPU}; then \
-		pip install --no-cache-dir -qU tensorflow-gpu==2.1.0-rc2 && \
-		pip install --no-cache-dir -qU torch==1.3.1 torchvision==0.4.2; \
+		pip install --no-cache-dir -qU tensorflow-gpu==2.1.0 && \
+		pip install --no-cache-dir -qU torch==1.4.0 torchvision==0.5.0; \
 	else \
-		pip install --no-cache-dir -qU tensorflow-cpu==2.1.0-rc2 && \
-		pip install --no-cache-dir -qU torch==1.3.1+cpu torchvision==0.4.2+cpu -f https://download.pytorch.org/whl/torch_stable.html; \
+		pip install --no-cache-dir -qU tensorflow-cpu==2.1.0 && \
+		pip install --no-cache-dir -qU torch==1.4.0+cpu torchvision==0.5.0+cpu -f https://download.pytorch.org/whl/torch_stable.html; \
 	fi
 	
 
