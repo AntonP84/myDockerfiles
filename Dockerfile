@@ -10,7 +10,9 @@ ENV TERM=xterm \
 	DEBIAN_FRONTEND=noninteractive \
 	PROMPT_DIRTRIM=2 \
 	HOME=/home/${NB_USER} \
-	PATH=$PATH:/home/${NB_USER}/.local/bin
+	PATH=$PATH:/home/${NB_USER}/.local/bin \
+	PYTHONDONTWRITEBYTECODE=True \
+	PYTHONIOENCODING=utf-8
 
 USER root
 WORKDIR /home/root
@@ -18,13 +20,6 @@ WORKDIR /home/root
 COPY setup-environment.sh .
 RUN chmod +x setup-environment.sh && \
 	./setup-environment.sh
-
-ENV PYTHON_VERSION=3.7.6 \
-	PYTHONDONTWRITEBYTECODE=True \
-	PYTHONIOENCODING=utf-8
-COPY setup-python.sh .
-RUN chmod +x setup-python.sh && \
-	./setup-python.sh
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -qU -r requirements.txt && \
@@ -44,7 +39,7 @@ RUN chmod 600 ${HOME}/.kaggle/kaggle.json && \
 	chown ${NB_UID}:${NB_GID} ${HOME}/.kaggle/kaggle.json
 	
 # enable Jupyter extensions
-ENV JUPYTER_TOKEN=py37
+ENV JUPYTER_TOKEN=py36
 COPY setup-nbextensions.sh .
 RUN chmod +x setup-nbextensions.sh && \
 	./setup-nbextensions.sh
