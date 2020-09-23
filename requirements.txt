@@ -1,54 +1,51 @@
 # base
 jupyter==1.0.0
-numpy==1.18.2
-pandas==0.25.3
-# pandas-profiling 2.5.0 has requirement requests==2.22.0
-# pandas-profiling 2.5.0 has requirement pandas==0.25.3
-# pandas-profiling 2.5.0 has requirement tqdm==4.42.0
-pandas-profiling==2.5.0
-scipy==1.4.1
+numpy==1.19.2
+pandas==1.1.2
+pandas-profiling==2.9.0
+scipy==1.5.2
 
 # plotting
-matplotlib==3.2.1
-seaborn==0.10.0
-bokeh==2.0.1
+matplotlib==3.3.2
+seaborn==0.11.0
+bokeh==2.2.1
 pdpbox==0.2.0
 
 # ML
-scikit-learn==0.22.2.post1
-lightgbm==2.3.1
-xgboost==1.0.2
+scikit-learn==0.23.2
+lightgbm==3.0.0
+xgboost==1.2.0
 eli5==0.10.1
-shap==0.35.0
-mlflow==1.7.2
+shap==0.36.0
+mlflow==1.11.0
 
 # NN
-tensorflow-datasets==2.1.0
-livelossplot==0.5.0
+livelossplot==0.5.3
 pydot==1.4.1
 h5py==2.10.0
 
 # NLP
-nltk==3.4.5
-spacy==2.2.4
+nltk==3.5
+spacy==2.3.2
 
 # CV
-opencv-python==4.2.0.32
-pillow==7.1.1
+imgaug==0.4.0
+opencv-python==4.4.0.44
+pillow==7.2.0
 
 # other
-Cython==0.29.16
-dateparser==0.7.4
-feather-format==0.4.0
-kaggle==1.5.6  # kaggle 1.5.6 has requirement urllib3<1.25
-tqdm==4.42.0
-openpyxl==3.0.3
+Cython==0.29.21
+dateparser==0.7.6
+feather-format==0.4.1
+kaggle==1.5.6
+tqdm==4.49.0
+openpyxl==3.0.5
 
-pytest==5.4.1
-requests==2.22.0
-rope==0.16.0
-xlrd==1.2.0
-urllib3==1.24.3
-# # https://github.com/PyCQA/pylint/issues/3139
-pylint<2.4 
-astroid<2.3
+black
+pylint
+pytest
+requests
+rope
+xlrd  # for pandas and Excel
+xlwt
+urllib3

@@ -9,8 +9,6 @@ dpkg-reconfigure --frontend noninteractive tzdata
 
 # install some tools
 apt install -yqq apt-utils cmake unzip zip nano wget curl git net-tools htop iputils-ping
-apt install -yqq graphviz
-
 
 # install Python3.6 for ubuntu18.04
 apt install -yqq python3 python3-dev python3-pip
@@ -21,7 +19,6 @@ ln -s python3 python
 ln -s pip3 pip
 
 pip install --no-cache-dir -qU pip setuptools
-
 
 # clean up
 rm -rf /var/lib/apt/lists/*

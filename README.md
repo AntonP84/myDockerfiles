@@ -18,22 +18,22 @@ make build-cpu
 docker container run -d --rm \
     -e JUPYTER_TOKEN=my_token \
     -p 8888:8888 \
-    --mount type=bind,source=$(realpath ~),target=/mnt/data \
+    --mount type=bind,source=$(realpath ~),target=/data \
     --mount type=bind,source=/mnt/sda,target=/hdd \
     --mount type=bind,source=$(realpath ~),target=/notebooks \
     --gpus all \
     --name pyml-gpu \
-    pyml-gpu
+    pyml-gpu:20.09
 
 # CPU
 docker container run -d --rm \
     -e JUPYTER_TOKEN=my_token \
     -p 8888:8888 \
-    --mount type=bind,source=$(realpath ~),target=/mnt/data \
+    --mount type=bind,source=$(realpath ~),target=/data \
     --mount type=bind,source=/mnt/sda,target=/hdd \
     --mount type=bind,source=$(realpath ~),target=/notebooks \
     --name pyml \
-    pyml
+    pyml:20.09
 ```
 
 ## todo
