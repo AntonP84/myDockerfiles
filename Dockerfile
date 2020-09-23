@@ -33,13 +33,8 @@ RUN if ${USE_GPU}; then \
 		pip install --no-cache-dir -qU torch==1.4.0+cpu torchvision==0.5.0+cpu -f https://download.pytorch.org/whl/torch_stable.html; \
 	fi
 	
-
-COPY kaggle.json ${HOME}/.kaggle/
-RUN chmod 600 ${HOME}/.kaggle/kaggle.json && \
-	chown ${NB_UID}:${NB_GID} ${HOME}/.kaggle/kaggle.json
-	
 # enable Jupyter extensions
-ENV JUPYTER_TOKEN=py36
+ENV JUPYTER_TOKEN=123
 COPY setup-nbextensions.sh .
 RUN chmod +x setup-nbextensions.sh && \
 	./setup-nbextensions.sh
@@ -52,7 +47,7 @@ WORKDIR ${HOME}
 # Jupyter, TensorBoard, NNI
 EXPOSE 8888 6006 8080
 
-VOLUME /mnt/data
+VOLUME /data
 VOLUME /notebooks
 VOLUME /hdd
 
