@@ -23,7 +23,7 @@ docker container run -d --rm \
     --mount type=bind,source=$(realpath ~),target=/notebooks \
     --gpus all \
     --name pyml-gpu \
-    pyml-gpu:20.09
+    pyml-gpu:20.11
 
 # CPU
 docker container run -d --rm \
@@ -33,7 +33,7 @@ docker container run -d --rm \
     --mount type=bind,source=/mnt/sda,target=/hdd \
     --mount type=bind,source=$(realpath ~),target=/notebooks \
     --name pyml \
-    pyml:20.09
+    pyml:20.11
 ```
 
 ## todo
