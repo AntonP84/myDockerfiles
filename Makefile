@@ -7,14 +7,14 @@ endef
 
 build-cpu:
 	docker image build ${BUILD_ARGS} \
-		--build-arg IMAGE=ubuntu:18.04 \
+		--build-arg IMAGE=ubuntu:20.04 \
 		-t pyml:${TAG} \
 		.
 
 build-gpu:
 	docker image build ${BUILD_ARGS} \
 		--build-arg USE_GPU=true \
-		--build-arg IMAGE=nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04 \
+		--build-arg IMAGE=nvidia/cuda:11.0-devel-ubuntu20.04 \
 		-t pyml-gpu:${TAG} \
 		.
 
