@@ -1,44 +1,45 @@
 # base
 jupyter==1.0.0
-numpy==1.19.2
-pandas==1.1.2
+numpy==1.19.4
+pandas==1.1.4
 pandas-profiling==2.9.0
-scipy==1.5.2
+scipy==1.5.4
 
 # plotting
-matplotlib==3.3.2
+matplotlib==3.3.3
 seaborn==0.11.0
-bokeh==2.2.1
+bokeh==2.2.3
 pdpbox==0.2.0
 
 # ML
 scikit-learn==0.23.2
-lightgbm==3.0.0
-xgboost==1.2.0
+lightgbm==3.1.0
+xgboost==1.2.1
 eli5==0.10.1
-shap==0.36.0
-mlflow==1.11.0
+shap==0.37.0
+mlflow==1.12.1
 
 # NN
 livelossplot==0.5.3
 pydot==1.4.1
-h5py==2.10.0
+h5py==3.1.0
 
 # NLP
 nltk==3.5
-spacy==2.3.2
+spacy==2.3.4
+transformers==3.5.1
 
 # CV
 imgaug==0.4.0
-opencv-python==4.4.0.44
-pillow==7.2.0
+opencv-python==4.4.0.46
+pillow==8.0.1
 
 # other
 Cython==0.29.21
-dateparser==0.7.6
+dateparser==1.0.0
 feather-format==0.4.1
-kaggle==1.5.6
-tqdm==4.49.0
+kaggle==1.5.9
+tqdm==4.53.0
 openpyxl==3.0.5
 
 black

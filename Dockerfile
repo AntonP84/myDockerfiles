@@ -26,11 +26,12 @@ RUN pip install --no-cache-dir -qU -r requirements.txt && \
 	python -m nltk.downloader punkt
 
 RUN if ${USE_GPU}; then \
-		pip install --no-cache-dir -qU tensorflow-gpu==2.3.0 && \
-		pip install --no-cache-dir -qU torch==1.6.0+cu101 torchvision==0.7.0+cu101 -f https://download.pytorch.org/whl/torch_stable.html; \
+		# pip install --no-cache-dir -qU tensorflow-gpu==2.3.1 && \  # waiting for CUDA 11 support
+		pip install --no-cache-dir -qU tensorflow-cpu==2.3.1 && \
+		pip install --no-cache-dir -qU torch==1.7.0+cu110 torchvision==0.8.1+cu110 torchaudio===0.7.0 -f https://download.pytorch.org/whl/torch_stable.html; \
 	else \
-		pip install --no-cache-dir -qU tensorflow-cpu==2.3.0 && \
-		pip install --no-cache-dir -qU torch==1.6.0+cpu torchvision==0.7.0+cpu -f https://download.pytorch.org/whl/torch_stable.html; \
+		pip install --no-cache-dir -qU tensorflow-cpu==2.3.1 && \
+		pip install --no-cache-dir -qU torch==1.7.0+cpu torchvision==0.8.1+cpu torchaudio==0.7.0 -f https://download.pytorch.org/whl/torch_stable.html; \
 	fi
 	
 # enable Jupyter extensions
