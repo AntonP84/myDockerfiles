@@ -8,7 +8,7 @@ ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
 dpkg-reconfigure --frontend noninteractive tzdata
 
 # install some tools
-apt install -yqq apt-utils cmake unzip zip nano wget curl git net-tools htop iputils-ping
+apt install -yqq apt-utils cmake unzip zip nano wget curl git htop
 
 # install Python3.8.5 for ubuntu20.04
 apt install -yqq python3 python3-dev python3-pip
