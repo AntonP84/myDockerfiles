@@ -22,8 +22,8 @@ docker container run -d --rm \
     --mount type=bind,source=/mnt/sda,target=/hdd \
     --mount type=bind,source=$(realpath ~),target=/notebooks \
     --gpus all \
-    --name pyml-gpu \
-    pyml-gpu:20.11
+    --name pyml-gpu --userns=host \
+    pyml-gpu:21.04
 
 # CPU
 docker container run -d --rm \
@@ -33,9 +33,5 @@ docker container run -d --rm \
     --mount type=bind,source=/mnt/sda,target=/hdd \
     --mount type=bind,source=$(realpath ~),target=/notebooks \
     --name pyml \
-    pyml:20.11
+    pyml:21.04
 ```
-
-## todo
-
-- errors during image building

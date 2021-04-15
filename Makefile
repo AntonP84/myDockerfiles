@@ -1,4 +1,4 @@
-TAG=20.11
+TAG=21.04
 
 define BUILD_ARGS
 	--build-arg NB_UID=$$(id -u $$whoami) \
@@ -14,7 +14,7 @@ build-cpu:
 build-gpu:
 	docker image build ${BUILD_ARGS} \
 		--build-arg USE_GPU=true \
-		--build-arg IMAGE=nvidia/cuda:11.0-devel-ubuntu20.04 \
+		--build-arg IMAGE=nvidia/cuda:11.1-devel-ubuntu20.04 \
 		-t pyml-gpu:${TAG} \
 		.
 
