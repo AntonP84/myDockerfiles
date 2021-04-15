@@ -23,7 +23,7 @@ RUN chmod +x setup-environment.sh && \
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -qU -r requirements.txt && \
-	python -c "import nltk;nltk.download('popular')"
+	python -c "import nltk;nltk.download('punkt')"
 
 RUN if ${USE_GPU}; then \
 		pip install --no-cache-dir -qU tensorflow==2.4.1 && \
