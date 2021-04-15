@@ -21,10 +21,6 @@ COPY setup-environment.sh .
 RUN chmod +x setup-environment.sh && \
 	./setup-environment.sh
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -qU -r requirements.txt && \
-	python -c "import nltk;nltk.download('punkt')"
-
 RUN if ${USE_GPU}; then \
 		pip install --no-cache-dir -qU tensorflow==2.4.1 && \
 		pip install --no-cache-dir -qU torch==1.8.1+cu111 torchvision==0.9.1+cu111 torchaudio==0.8.1 -f https://download.pytorch.org/whl/torch_stable.html; \
@@ -32,7 +28,11 @@ RUN if ${USE_GPU}; then \
 		pip install --no-cache-dir -qU tensorflow-cpu==2.4.1 && \
 		pip install --no-cache-dir -qU torch==1.8.1+cpu torchvision==0.9.1+cpu torchaudio==0.8.1 -f https://download.pytorch.org/whl/torch_stable.html; \
 	fi
-	
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -qU -r requirements.txt && \
+	python -c "import nltk;nltk.download('punkt')"
+
 # enable Jupyter extensions
 ENV JUPYTER_TOKEN=123
 COPY setup-nbextensions.sh .
