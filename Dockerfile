@@ -21,28 +21,25 @@ COPY setup-environment.sh .
 RUN chmod +x setup-environment.sh && \
 	./setup-environment.sh
 
+USER ${NB_UID}:${NB_GID}
+WORKDIR ${HOME}
+
 RUN if ${USE_GPU}; then \
-		pip install --no-cache-dir -qU tensorflow==2.5.0 tensorboard==2.5 && \
+		pip install --no-cache-dir -qU tensorflow==2.5.0 && \
 		pip install --no-cache-dir -qU torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html; \
 	else \
-		pip install --no-cache-dir -qU tensorflow-cpu==2.5.0 tensorboard==2.5 && \
+		pip install --no-cache-dir -qU tensorflow-cpu==2.5.0 && \
 		pip install --no-cache-dir -qU torch==1.9.0+cpu torchvision==0.10.0+cpu torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html; \
 	fi
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -qU -r requirements.txt && \
-	python -c "import nltk;nltk.download('punkt')"
+COPY --chown=${NB_UID}:${NB_GID} requirements.txt .
+RUN pip install --no-cache-dir -qU -r requirements.txt
 
 # enable Jupyter extensions
 ENV JUPYTER_TOKEN=123
-COPY setup-nbextensions.sh .
+COPY --chown=${NB_UID}:${NB_GID} setup-nbextensions.sh .
 RUN chmod +x setup-nbextensions.sh && \
 	./setup-nbextensions.sh
-        
-RUN chown -hR ${NB_UID}:${NB_GID} ${HOME}
-
-USER ${NB_UID}:${NB_GID}
-WORKDIR ${HOME}
 
 # Jupyter, TensorBoard, NNI, MLFlow
 EXPOSE 8888 6006 8080 5000

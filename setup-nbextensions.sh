@@ -2,9 +2,9 @@
 
 pip install --no-cache-dir -qU jupyter_contrib_nbextensions
 
-jupyter contrib nbextension install --system --InstallContribNbextensionsApp.log_level=WARN
-jupyter nbextensions_configurator enable --system
-jupyter nbextension enable --py --sys-prefix widgetsnbextension
+jupyter contrib nbextension install --user --InstallContribNbextensionsApp.log_level=WARN
+jupyter nbextensions_configurator enable --user
+jupyter nbextension enable --py --user widgetsnbextension
 jupyter nbextension enable toc2/main
 jupyter nbextension enable spellchecker/main
 jupyter nbextension enable codefolding/main
