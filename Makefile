@@ -7,20 +7,19 @@ endef
 
 build-cpu:
 	docker image build ${BUILD_ARGS} \
-		--build-arg IMAGE=ubuntu:20.04 \
+		--build-arg DEVICE=cpu \
 		-t pyml:${TAG} \
 		.
 
 build-gpu:
 	docker image build ${BUILD_ARGS} \
-		--build-arg USE_GPU=true \
-		--build-arg IMAGE=nvidia/cuda:11.1.1-devel-ubuntu20.04 \
+		--build-arg DEVICE=gpu \
 		-t pyml-gpu:${TAG} \
 		.
 
 test-gpu:
 	@echo Test TensorFlow 
-	@docker container run --rm --gpus all pyml-gpu:${TAG} python -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'));"
+	@docker container run --rm --gpus all pyml-gpu:${TAG} python -c "import tensorflow as tf; print('# GPUs:', len(tf.config.list_physical_devices('GPU')));"
 	@echo
 	@echo Test PyTorch
-	@docker container run --rm --gpus all pyml-gpu:${TAG} python -c "import torch; print(torch.cuda.is_available());"
+	@docker container run --rm --gpus all pyml-gpu:${TAG} python -c "import torch; print('GPU is available:', torch.cuda.is_available());"

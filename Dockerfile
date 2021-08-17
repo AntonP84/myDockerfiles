@@ -1,7 +1,9 @@
-ARG IMAGE
-FROM ${IMAGE}
+ARG DEVICE
+FROM ubuntu:20.04 AS base-cpu
+FROM nvidia/cuda:11.4.1-cudnn8-devel-ubuntu20.04 AS base-gpu
+FROM base-${DEVICE} AS base
 
-ARG USE_GPU=false
+ARG DEVICE
 ARG NB_USER=user
 ARG NB_UID=1000
 ARG NB_GID=1000
@@ -24,11 +26,11 @@ RUN chmod +x setup-environment.sh && \
 USER ${NB_UID}:${NB_GID}
 WORKDIR ${HOME}
 
-RUN if ${USE_GPU}; then \
-		pip install --no-cache-dir -qU tensorflow==2.5.0 && \
+RUN if [ "${DEVICE}" = "gpu" ]; then \
+		pip install --no-cache-dir -qU tensorflow==2.6.0 && \
 		pip install --no-cache-dir -qU torch==1.9.0+cu111 torchvision==0.10.0+cu111 torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html; \
 	else \
-		pip install --no-cache-dir -qU tensorflow-cpu==2.5.0 && \
+		pip install --no-cache-dir -qU tensorflow-cpu==2.6.0 && \
 		pip install --no-cache-dir -qU torch==1.9.0+cpu torchvision==0.10.0+cpu torchaudio==0.9.0 -f https://download.pytorch.org/whl/torch_stable.html; \
 	fi
 
