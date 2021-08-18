@@ -43,7 +43,7 @@ openpyxl==3.0.7
 tqdm==4.62.1
 
 black
-pylint
+flake8
 pytest
 requests
 rope
